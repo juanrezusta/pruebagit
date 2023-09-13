@@ -451,6 +451,8 @@ def neworder_window():
     neworder_window.attributes("-topmost",True)
     neworder_window.lift()
     #AGREGO COMENTARIO
+    #OTRO COMENTARIO SAPE   
+    "OTRO PARA GIT"
 
     def send_orderinfo():
         
