@@ -450,7 +450,7 @@ def neworder_window():
     neworder_window.resizable(False, False)
     neworder_window.attributes("-topmost",True)
     neworder_window.lift()
-    
+    #AGREGO COMENTARIO
 
     def send_orderinfo():
         
