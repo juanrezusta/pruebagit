@@ -450,8 +450,8 @@ def neworder_window():
     neworder_window.resizable(False, False)
     neworder_window.attributes("-topmost",True)
     neworder_window.lift()
-    #ihdwaihdiahs+
     
+
     def send_orderinfo():
         
         customer_fullname = combo_customer_in_orders.get().capitalize()
