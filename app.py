@@ -367,6 +367,80 @@ def newitem_window():
     newitem_button.config(command=send_info)
     newitem_button.focus_set()
 
+def update_item_window():
+    x=main_window.winfo_x()
+    y=main_window.winfo_y()
+    update_item_window=tk.Toplevel(main_window)
+    update_item_window.title("Modifique el item que desee")
+    update_item_window.geometry(f"500x200+{x+100}+{y+100}")
+    update_item_window.grab_set()    
+    update_item_window.resizable(False, False)
+    update_item_window.attributes("-topmost",True)
+    update_item_window.lift()
+
+    
+    selected_items=stock_table.selection()
+    if selected_items:
+        for item in selected_items:
+            item_id_sql=stock_table.item(item)["values"][0]
+            name=stock_table.item(item)["values"][1]
+            quantity=stock_table.item(item)["values"][2]
+            color=stock_table.item(item)["values"][3]
+            size=stock_table.item(item)["values"][4]
+            value=stock_table.item(item)["values"][5]
+            print(item_id_sql,name,quantity,color,size,value)
+
+    item_id_label=ttk.Label(update_item_window,text="item:")
+    item_id_label.place(x=15,y=25,width=35,height=25)
+
+    item_id_entry=ttk.Entry(update_item_window)
+    item_id_entry.place(x=15,y=60,width=35,height=25)
+    item_id_entry.insert(0,item_id_sql)
+
+    name_label=ttk.Label(update_item_window,text="Producto:")
+    name_label.place(x=50,y=25,width=150,height=25)
+
+    name_entry=ttk.Entry(update_item_window)
+    name_entry.place(x=50,y=60,width=150,height=25)
+    name_entry.insert(0,name)
+
+    quantity_label=ttk.Label(update_item_window,text="Cant:")
+    quantity_label.place(x=200,y=25,width=35,height=25)
+
+    quantity_entry=ttk.Entry(update_item_window)
+    quantity_entry.place(x=200,y=60,width=35,height=25)
+    quantity_entry.insert(0,quantity)
+
+    color_label=ttk.Label(update_item_window,text="Color:")
+    color_label.place(x=235,y=25,width=60,height=25)
+
+    color_entry=ttk.Entry(update_item_window)
+    color_entry.place(x=235,y=60,width=60,height=25)
+    color_entry.insert(0,color)
+
+    size_label=ttk.Label(update_item_window,text="Talle:")
+    size_label.place(x=295,y=25,width=60,height=25)
+
+    size_entry=ttk.Entry(update_item_window)
+    size_entry.place(x=295,y=60,width=60,height=25)
+    size_entry.insert(0,size)
+
+    value_label=ttk.Label(update_item_window,text="Precio:")
+    value_label.place(x=355,y=25,width=60,height=25)
+    
+    value_entry=ttk.Entry(update_item_window)
+    value_entry.place(x=355,y=60,width=60,height=25)
+    value_entry.insert(0,value)
+
+    def update_item():
+        print("SAPEEEE")
+
+
+
+    update_info_button=create_button(update_item_window,"Actualizar Datos",update_item,355,120)
+    
+
+
 
 
 def newcustomer_window():
@@ -608,15 +682,15 @@ class create_button:
 
 def modify_item(): 
     selected_items=stock_table.selection()
-
     if selected_items:
         for item in selected_items:
-            item_id= stock_table.item(item)['values'][2]
-            print(item_id)
+            print(stock_table.item(item)["values"][1])
+        
+
 
 
 newitem_button=create_button(stock_treeframe,"Ingresar Producto",newitem_window,40,40)
-modifyitem_button=create_button(stock_treeframe,"Modificar Item",modify_item,480,40)
+modifyitem_button=create_button(stock_treeframe,"Modificar Item",update_item_window,480,40)
 erase_button=create_button(stock_treeframe,"Eliminar Producto",erase_item,650,40)
 
 
